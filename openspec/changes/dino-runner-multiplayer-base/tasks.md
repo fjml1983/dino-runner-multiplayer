@@ -5,7 +5,7 @@
 - [x] 1.3 Create packages/server/ with Express + TypeScript scaffold
 - [x] 1.4 Create root tsconfig.base.json extended by both packages
 - [x] 1.5 Set up concurrently scripts: npm run dev at root starts both dev servers
-- [ ] 1.6 Create railway.json / Nixpacks config for deployment
+- [x] 1.6 Create railway.json / Nixpacks config for deployment
 
 ## 2. Backend: Database & Auth
 
