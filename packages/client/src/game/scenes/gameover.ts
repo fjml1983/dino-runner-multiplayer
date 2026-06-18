@@ -1,6 +1,6 @@
-import type { KaboomCtx } from 'kaplay'
+import type { KAPLAYCtx } from 'kaplay'
 
-export function createGameOverScene(k: KaboomCtx) {
+export function createGameOverScene(k: KAPLAYCtx) {
   k.scene('gameover', (data: { score?: number }) => {
     const score = data?.score ?? 0
 

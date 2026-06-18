@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { ProfilePage } from './ProfilePage'
-import { AuthProvider } from '../context/AuthContext'
 
 vi.mock('../api/client', () => ({
   api: {

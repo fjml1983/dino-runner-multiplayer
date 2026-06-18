@@ -17,7 +17,6 @@ declare global {
 
 export function GamePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [score, setScore] = useState(0)
   const [highScore, setHighScore] = useState(() => {
     return Number(localStorage.getItem('highScore') ?? 0)
   })
@@ -38,10 +37,6 @@ export function GamePage() {
 
     k.go('menu')
 
-    const onScore = (e: Event) => {
-      const { score: s } = (e as CustomEvent).detail
-      setScore(s)
-    }
     const onGameOver = (e: Event) => {
       const { score: s, final } = (e as CustomEvent).detail
       if (final) {
@@ -59,7 +54,6 @@ export function GamePage() {
       setTimeout(() => setPowerUp(null), 2000)
     }
 
-    window.addEventListener('game:score', onScore)
     window.addEventListener('game:over', onGameOver)
     window.addEventListener('game:powerup', onPowerUp)
 
@@ -70,7 +64,6 @@ export function GamePage() {
     }
 
     return () => {
-      window.removeEventListener('game:score', onScore)
       window.removeEventListener('game:over', onGameOver)
       window.removeEventListener('game:powerup', onPowerUp)
       delete window.gameAPI

@@ -1,6 +1,6 @@
-import type { KaboomCtx } from 'kaplay'
+import type { KAPLAYCtx, GameObj } from 'kaplay'
 import { GRAVITY, JUMP_FORCE, INITIAL_SPEED } from '../constants'
-import { getDifficulty, getCurrentSpeed } from '../systems/difficulty'
+import { getCurrentSpeed } from '../systems/difficulty'
 import { updateSpawner, resetSpawner, type SpawnPattern } from '../systems/spawner'
 import { emitScore, emitGameOver, emitPowerUp } from '../events'
 
@@ -12,8 +12,9 @@ let shieldTimer = 0
 let slowmoActive = false
 let slowmoTimer = 0
 let normalSpeed = INITIAL_SPEED
+let isJumping = false
 
-export function createGameScene(k: KaboomCtx) {
+export function createGameScene(k: KAPLAYCtx) {
   k.scene('game', () => {
     currentScore = 0
     gameSpeed = INITIAL_SPEED
@@ -41,11 +42,6 @@ export function createGameScene(k: KaboomCtx) {
       k.area(),
       k.body(),
       k.z(10),
-      {
-        isJumping: false,
-        width: 40,
-        height: 50,
-      },
     ])
 
     const scoreLabel = k.add([
@@ -55,8 +51,8 @@ export function createGameScene(k: KaboomCtx) {
       k.z(20),
     ])
 
-    let shieldOverlay: ReturnType<KaboomCtx['add']> | null = null
-    let slowmoOverlay: ReturnType<KaboomCtx['add']> | null = null
+    let shieldOverlay: ReturnType<KAPLAYCtx['add']> | null = null
+    let slowmoOverlay: ReturnType<KAPLAYCtx['add']> | null = null
 
     const addObstacle = (pattern: SpawnPattern, speed: number) => {
       const spriteName = pattern.type === 'pterodactyl' ? 'pterodactyl'
@@ -74,7 +70,7 @@ export function createGameScene(k: KaboomCtx) {
       ])
 
       if (pattern.type === 'pterodactyl') {
-        obs.pos.y = ground.pos.y - 80
+        ;(obs as any).pos.y = ground.pos.y - 80
       }
     }
 
@@ -131,7 +127,7 @@ export function createGameScene(k: KaboomCtx) {
       k.go('gameover', { score: currentScore })
     }
 
-    player.onCollide((obj) => {
+    player.onCollide((obj: GameObj) => {
       if (obj.is('obstacle') || obj.isPowerUp === true) {
         if (obj.isPowerUp) {
           if (obj.powerType === 'shield') {
@@ -141,8 +137,8 @@ export function createGameScene(k: KaboomCtx) {
             emitPowerUp('shield')
             if (shieldOverlay) k.destroy(shieldOverlay)
             shieldOverlay = k.add([
-              k.rect(player.width + 10, player.height + 10),
-              k.pos(player.pos.x - 5, player.pos.y - 5),
+              k.rect(50, 60),
+              k.pos(75, ground.pos.y - 55),
               k.color(k.Color.fromArray([0, 100, 255, 0.3])),
               k.z(11),
               k.opacity(0.3),
@@ -172,15 +168,15 @@ export function createGameScene(k: KaboomCtx) {
     player.onUpdate(() => {
       if (isGameOver) return
       if (player.pos.y >= ground.pos.y - player.height) {
-        player.isJumping = false
+        isJumping = false
       }
     })
 
     const jump = () => {
       if (isGameOver) return
-      if (!player.isJumping && player.pos.y >= ground.pos.y - player.height - 1) {
+      if (!isJumping && player.pos.y >= ground.pos.y - player.height - 1) {
         player.jump(JUMP_FORCE)
-        player.isJumping = true
+        isJumping = true
         try { k.play('jump') } catch { /* no audio */ }
       }
     }
@@ -198,7 +194,6 @@ export function createGameScene(k: KaboomCtx) {
       currentScore += Math.floor(dt * 10)
 
       if (!slowmoActive) {
-        const phase = getDifficulty(currentScore)
         gameSpeed = getCurrentSpeed(currentScore)
       }
 
@@ -226,8 +221,8 @@ export function createGameScene(k: KaboomCtx) {
             shieldOverlay = null
           }
         } else if (shieldOverlay) {
-          shieldOverlay.pos.x = player.pos.x - 5
-          shieldOverlay.pos.y = player.pos.y - 5
+          ;(shieldOverlay as any).pos.x = player.pos.x - 5
+          ;(shieldOverlay as any).pos.y = player.pos.y - 5
         }
       }
 

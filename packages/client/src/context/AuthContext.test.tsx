@@ -9,13 +9,7 @@ vi.mock('../api/client', () => ({
   },
 }))
 
-vi.mock('@react-oauth/google', () => ({
-  googleLogi: vi.fn(),
-  useGoogleLogin: vi.fn(),
-}))
-
 import { api } from '../api/client'
-import { googleLogi } from '@react-oauth/google'
 
 function TestConsumer() {
   const { user, token, login, logout, loading } = useAuth()
@@ -23,7 +17,7 @@ function TestConsumer() {
     <div>
       <span data-testid="loading">{String(loading)}</span>
       <span data-testid="token">{token ?? 'null'}</span>
-      <span data-testid="user">{user ? user.name : 'null'}</span>
+      <span data-testid="user">{user ? user.displayName : 'null'}</span>
       <button data-testid="login" onClick={() => login('test-code')}>Login</button>
       <button data-testid="logout" onClick={logout}>Logout</button>
     </div>
@@ -48,10 +42,10 @@ describe('AuthContext', () => {
   })
 
   it('stores token on login', async () => {
-    const user = { name: 'Test User', email: 'test@example.com', picture: '' }
-    const userData = { data: user }
+    const mockUser = { id: '1', displayName: 'Test User', email: 'test@example.com', avatar: '' }
+    const userData = { data: mockUser }
     ;(api.post as ReturnType<typeof vi.fn>).mockResolvedValue({
-      data: { token: 'test-jwt', user },
+      data: { token: 'test-jwt', user: mockUser },
     })
     ;(api.get as ReturnType<typeof vi.fn>).mockResolvedValue(userData)
 

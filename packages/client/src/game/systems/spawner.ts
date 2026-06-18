@@ -1,4 +1,4 @@
-import type { KaboomCtx, GameObj } from 'kaplay'
+import type { KAPLAYCtx, GameObj } from 'kaplay'
 import { getDifficulty } from './difficulty'
 import type { PhaseConfig } from './difficulty'
 
@@ -49,11 +49,11 @@ export function resetSpawner() {
 }
 
 export function updateSpawner(
-  k: KaboomCtx,
+  _k: KAPLAYCtx,
   dt: number,
   score: number,
   speed: number,
-  obstacles: GameObj[],
+  _obstacles: GameObj[],
   addObstacle: (pattern: SpawnPattern, speed: number) => void
 ) {
   const phase = getDifficulty(score)

@@ -1,6 +1,6 @@
-import type { KaboomCtx } from 'kaplay'
+import type { KAPLAYCtx } from 'kaplay'
 
-export function createMenuScene(k: KaboomCtx) {
+export function createMenuScene(k: KAPLAYCtx) {
   k.scene('menu', () => {
     k.add([
       k.text('Dino Runner', { size: 48 }),

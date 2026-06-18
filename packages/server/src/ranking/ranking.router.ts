@@ -22,7 +22,7 @@ router.get('/current', async (_req: Request, res: Response) => {
 
 router.get('/week/:weekId', async (req: Request, res: Response) => {
   try {
-    const { weekId } = req.params
+    const weekId = req.params.weekId as string
     const scores = await prisma.score.findMany({
       where: { weekId },
       orderBy: { value: 'desc' },

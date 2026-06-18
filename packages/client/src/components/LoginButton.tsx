@@ -1,5 +1,3 @@
-import { type ReactNode } from 'react'
-
 interface LoginButtonProps {
   user?: { name: string; picture: string }
   onLogin: () => void

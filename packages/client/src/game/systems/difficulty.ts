@@ -53,11 +53,12 @@ export function getDifficulty(score: number): PhaseConfig {
 
 export function getCurrentSpeed(score: number): number {
   const phase = getDifficulty(score)
-  const [minSpeed, maxSpeed] = phase.speedRange
+  const [phaseMin, phaseMax] = phase.speedRange
   const progress = Math.min(
     1,
     (score - phase.minScore) / Math.max(1, phase.maxScore - phase.minScore)
   )
-  const clamped = Math.min(maxSpeed, INITIAL_SPEED + score * ACCELERATION)
-  return Math.min(clamped, MAX_SPEED)
+  const target = phaseMin + (phaseMax - phaseMin) * progress
+  const accelerationSpeed = INITIAL_SPEED + score * ACCELERATION
+  return Math.min(Math.max(target, accelerationSpeed), MAX_SPEED)
 }

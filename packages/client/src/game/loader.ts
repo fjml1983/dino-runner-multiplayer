@@ -1,6 +1,6 @@
-import type { KaboomCtx } from 'kaplay'
+import type { KAPLAYCtx } from 'kaplay'
 
-export function loadSprites(k: KaboomCtx) {
+export function loadSprites(k: KAPLAYCtx) {
   const sprites = [
     'dino', 'dino-jump', 'cactus', 'cactus-group',
     'pterodactyl', 'ground', 'shield', 'slowmo',
@@ -12,7 +12,7 @@ export function loadSprites(k: KaboomCtx) {
   }
 }
 
-export function loadSounds(k: KaboomCtx) {
+export function loadSounds(k: KAPLAYCtx) {
   try {
     k.loadSound('jump', '/sounds/jump.wav')
     k.loadSound('collision', '/sounds/collision.wav')
