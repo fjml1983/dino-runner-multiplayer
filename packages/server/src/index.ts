@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express'
 import cors from 'cors'
 import { authRouter } from './auth/auth.router.js'
@@ -12,6 +13,13 @@ app.use(express.json())
 app.use('/api/auth', authRouter)
 app.use('/api/scores', scoresRouter)
 app.use('/api/ranking', rankingRouter)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../../client/dist')))
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/dist/index.html'))
+  })
+}
 
 export { app }
 
