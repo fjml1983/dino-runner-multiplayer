@@ -32,7 +32,7 @@
 
 ## 5. Frontend: Auth & HTTP client
 
-- [ ] 5.1 Set up axios instance with JWT interceptor
+- [x] 5.1 Set up axios instance with JWT interceptor
 - [ ] 5.2 Create AuthContext and Google OAuth integration (popup)
 - [ ] 5.3 Redirect fallback if popup blocked
 - [ ] 5.4 Create LoginButton component
