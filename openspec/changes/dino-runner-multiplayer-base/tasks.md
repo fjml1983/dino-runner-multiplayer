@@ -57,12 +57,12 @@
 
 ## 8. Frontend: React UI
 
-- [ ] 8.1 Create GamePage with KaplayCanvas + ScoreDisplay overlay
-- [ ] 8.2 Wire event bus (game:score → React, game:over → submit modal)
-- [ ] 8.3 Create RankingPage with tabs (current week, historical, all-time)
-- [ ] 8.4 Create ProfilePage with personal stats and score history
-- [ ] 8.5 Implement responsive layout (mobile full-width canvas, desktop centered)
-- [ ] 8.6 Touch input support for mobile (jump on tap)
+- [x] 8.1 Create GamePage with KaplayCanvas + ScoreDisplay overlay
+- [x] 8.2 Wire event bus (game:score → React, game:over → submit modal)
+- [x] 8.3 Create RankingPage with tabs (current week, historical, all-time)
+- [x] 8.4 Create ProfilePage with personal stats and score history
+- [x] 8.5 Implement responsive layout (mobile full-width canvas, desktop centered)
+- [x] 8.6 Touch input support for mobile (jump on tap)
 
 ## 9. Polish & Deploy
 
