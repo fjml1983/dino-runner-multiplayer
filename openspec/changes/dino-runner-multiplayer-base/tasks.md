@@ -1,10 +1,10 @@
 ## 1. Monorepo Infrastructure
 
-- [ ] 1.1 Initialize root package.json with npm workspaces pointing to packages/*
-- [ ] 1.2 Create packages/client/ with Vite + React + TypeScript scaffold
-- [ ] 1.3 Create packages/server/ with Express + TypeScript scaffold
-- [ ] 1.4 Create root tsconfig.base.json extended by both packages
-- [ ] 1.5 Set up concurrently scripts: npm run dev at root starts both dev servers
+- [x] 1.1 Initialize root package.json with npm workspaces pointing to packages/*
+- [x] 1.2 Create packages/client/ with Vite + React + TypeScript scaffold
+- [x] 1.3 Create packages/server/ with Express + TypeScript scaffold
+- [x] 1.4 Create root tsconfig.base.json extended by both packages
+- [x] 1.5 Set up concurrently scripts: npm run dev at root starts both dev servers
 - [ ] 1.6 Create railway.json / Nixpacks config for deployment
 
 ## 2. Backend: Database & Auth
