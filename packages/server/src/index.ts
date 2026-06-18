@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import { authRouter } from './auth/auth.router.js'
 import { scoresRouter } from './scores/scores.router.js'
+import { rankingRouter } from './ranking/ranking.router.js'
 
 const app = express()
 
@@ -10,6 +11,7 @@ app.use(express.json())
 
 app.use('/api/auth', authRouter)
 app.use('/api/scores', scoresRouter)
+app.use('/api/ranking', rankingRouter)
 
 export { app }
 
