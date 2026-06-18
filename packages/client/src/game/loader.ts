@@ -14,11 +14,10 @@ export function loadSprites(k: KaboomCtx) {
 
 export function loadSounds(k: KaboomCtx) {
   try {
-    k.loadSound('jump', '/sounds/jump.mp3')
-    k.loadSound('collision', '/sounds/collision.mp3')
-    k.loadSound('powerup', '/sounds/powerup.mp3')
-    k.loadSound('shield-break', '/sounds/shield-break.mp3')
-    k.loadSound('slowmo', '/sounds/slowmo.mp3')
+    k.loadSound('jump', '/sounds/jump.wav')
+    k.loadSound('collision', '/sounds/collision.wav')
+    k.loadSound('powerup', '/sounds/powerup.wav')
+    k.loadSound('shield-break', '/sounds/shield-break.wav')
   } catch {
     console.warn('Sound files not found, continuing without audio')
   }
