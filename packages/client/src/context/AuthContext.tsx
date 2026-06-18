@@ -3,15 +3,15 @@ import { api } from '../api/client'
 
 interface User {
   id: string
-  name: string
+  displayName: string
   email: string
-  picture: string
+  avatar: string | null
 }
 
 interface AuthContextValue {
   user: User | null
   token: string | null
-  login: (code: string) => Promise<void>
+  login: (credential: string) => Promise<void>
   logout: () => void
   loading: boolean
 }
@@ -37,8 +37,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [token])
 
-  const login = useCallback(async (code: string) => {
-    const res = await api.post<{ token: string; user: User }>('/api/auth/google', { code })
+  const login = useCallback(async (credential: string) => {
+    const res = await api.post<{ token: string; user: User }>('/api/auth/google', { credential })
     const { token: newToken, user: userData } = res.data
     localStorage.setItem('token', newToken)
     setToken(newToken)

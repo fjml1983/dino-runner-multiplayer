@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api } from '../api/client'
+import { getCurrentWeekId, getPreviousWeekId } from '../api/week'
 
 interface RankingEntry {
   rank: number
@@ -22,7 +23,7 @@ export function RankingPage() {
       tab === 'current'
         ? '/api/ranking/current'
         : tab === 'last'
-        ? '/api/ranking/week/last'
+        ? `/api/ranking/week/${getPreviousWeekId(getCurrentWeekId())}`
         : '/api/ranking/all'
 
     api.get<RankingEntry[]>(url)

@@ -4,8 +4,8 @@ import { api } from '../api/client'
 
 interface ScoreEntry {
   weekId: string
-  score: number
-  createdAt: string
+  value: number
+  achievedAt: string
 }
 
 export function ProfilePage() {
@@ -14,10 +14,11 @@ export function ProfilePage() {
   const [bestScore, setBestScore] = useState<number>(0)
 
   useEffect(() => {
-    api.get<{ scores: ScoreEntry[]; bestScore: number }>('/api/scores/me')
+    api.get<ScoreEntry[]>('/api/scores/me')
       .then((res) => {
-        setScores(res.data.scores)
-        setBestScore(res.data.bestScore)
+        setScores(res.data)
+        const best = res.data.reduce((max, s) => Math.max(max, s.value), 0)
+        setBestScore(best)
       })
       .catch(() => {})
   }, [])
@@ -36,12 +37,12 @@ export function ProfilePage() {
       <h1>Profile</h1>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
         <img
-          src={user.picture}
-          alt={user.name}
+          src={user.avatar || ''}
+          alt={user.displayName}
           style={{ width: 64, height: 64, borderRadius: '50%' }}
         />
         <div>
-          <h2>{user.name}</h2>
+          <h2>{user.displayName}</h2>
           <p style={{ color: '#666' }}>{user.email}</p>
           <p><strong>All-time Best:</strong> {bestScore}</p>
         </div>
@@ -54,7 +55,7 @@ export function ProfilePage() {
         <ul>
           {scores.map((s) => (
             <li key={s.weekId}>
-              Week {s.weekId}: {s.score}
+              Week {s.weekId}: {s.value}
             </li>
           ))}
         </ul>

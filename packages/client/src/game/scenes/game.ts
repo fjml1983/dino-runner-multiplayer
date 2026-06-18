@@ -129,7 +129,7 @@ export function createGameScene(k: KaboomCtx) {
         k.play('collision')
       } catch { /* no audio */ }
       emitGameOver(currentScore)
-      k.go('gameover')
+      k.go('gameover', { score: currentScore })
     }
 
     player.onCollide((obj) => {

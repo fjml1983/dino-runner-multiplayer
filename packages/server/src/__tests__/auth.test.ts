@@ -60,6 +60,13 @@ describe('POST /api/auth/google', () => {
 
     expect(res.status).toBe(200)
     expect(res.body).toHaveProperty('token')
+    expect(res.body).toHaveProperty('user')
+    expect(res.body.user).toMatchObject({
+      id: 'google-sub-123',
+      email: 'user@example.com',
+      displayName: 'Test User',
+      avatar: 'https://example.com/avatar.jpg',
+    })
     expect(typeof res.body.token).toBe('string')
   })
 

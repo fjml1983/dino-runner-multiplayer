@@ -45,7 +45,15 @@ router.post('/google', async (req: Request, res: Response) => {
       { expiresIn: '7d' }
     )
 
-    res.json({ token })
+    res.json({
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        displayName: user.displayName,
+        avatar: user.avatar,
+      },
+    })
   } catch (error) {
     console.error('Auth error:', error)
     res.status(401).json({ error: 'Authentication failed' })

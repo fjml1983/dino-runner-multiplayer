@@ -1,9 +1,8 @@
 import type { KaboomCtx } from 'kaplay'
-import { emitGameOver } from '../events'
 
 export function createGameOverScene(k: KaboomCtx) {
-  k.scene('gameover', () => {
-    const score = currentScore
+  k.scene('gameover', (data: { score?: number }) => {
+    const score = data?.score ?? 0
 
     k.add([
       k.text('Game Over', { size: 48 }),
@@ -31,9 +30,4 @@ export function createGameOverScene(k: KaboomCtx) {
     k.onClick(restart)
     k.onTouchStart(restart)
   })
-}
-
-let currentScore = 0
-export function setGameOverScore(score: number) {
-  currentScore = score
 }
