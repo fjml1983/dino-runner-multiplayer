@@ -1,14 +1,15 @@
 import type { KaboomCtx } from 'kaplay'
 
 export function loadSprites(k: KaboomCtx) {
-  k.loadSprite('dino', '/sprites/dino.png')
-  k.loadSprite('dino-jump', '/sprites/dino-jump.png')
-  k.loadSprite('cactus', '/sprites/cactus.png')
-  k.loadSprite('cactus-group', '/sprites/cactus-group.png')
-  k.loadSprite('pterodactyl', '/sprites/pterodactyl.png')
-  k.loadSprite('ground', '/sprites/ground.png')
-  k.loadSprite('shield', '/sprites/shield.png')
-  k.loadSprite('slowmo', '/sprites/slowmo.png')
+  const sprites = [
+    'dino', 'dino-jump', 'cactus', 'cactus-group',
+    'pterodactyl', 'ground', 'shield', 'slowmo',
+  ]
+  for (const name of sprites) {
+    k.loadSprite(name, `/sprites/${name}.png`).catch(() => {
+      // sprites not loaded yet — game uses rectangles as fallback
+    })
+  }
 }
 
 export function loadSounds(k: KaboomCtx) {
