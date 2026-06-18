@@ -57,7 +57,7 @@ router.get('/weeks', async (_req: Request, res: Response) => {
       by: ['weekId'],
       orderBy: { weekId: 'desc' },
     })
-    res.json(weeks.map((w) => w.weekId))
+    res.json(weeks.map((w: { weekId: string }) => w.weekId))
   } catch (error) {
     console.error('Ranking error:', error)
     res.status(500).json({ error: 'Internal server error' })
