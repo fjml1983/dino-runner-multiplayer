@@ -39,7 +39,7 @@
 
 ## 6. Frontend: Game engine with Kaplay
 
-- [ ] 6.1 Initialize Kaplay on a dedicated canvas element
+- [x] 6.1 Initialize Kaplay on a dedicated canvas element
 - [ ] 6.2 Load sprites (dino, cactus, pterodactyl, ground, power-ups)
 - [ ] 6.3 Load sound effects (jump, collision, powerup)
 - [ ] 6.4 Implement menu scene (start prompt)
