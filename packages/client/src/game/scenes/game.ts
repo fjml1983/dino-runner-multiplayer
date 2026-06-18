@@ -36,14 +36,15 @@ export function createGameScene(k: KaboomCtx) {
     ])
 
     const player = k.add([
-      k.rect(40, 50),
+      k.sprite('dino'),
       k.pos(80, ground.pos.y - 50),
-      k.color(k.Color.fromArray([80, 80, 80])),
       k.area(),
       k.body(),
       k.z(10),
       {
         isJumping: false,
+        width: 40,
+        height: 50,
       },
     ])
 
@@ -58,17 +59,17 @@ export function createGameScene(k: KaboomCtx) {
     let slowmoOverlay: ReturnType<KaboomCtx['add']> | null = null
 
     const addObstacle = (pattern: SpawnPattern, speed: number) => {
+      const spriteName = pattern.type === 'pterodactyl' ? 'pterodactyl'
+        : pattern.type === 'cactus-group' ? 'cactus-group'
+        : 'cactus'
+
       const obs = k.add([
-        k.rect(pattern.type === 'cactus-group' ? 60 : 30, 40),
+        k.sprite(spriteName),
         k.pos(k.width(), ground.pos.y - 40),
-        k.color(
-          pattern.type === 'pterodactyl'
-            ? k.Color.fromArray([200, 100, 100])
-            : k.Color.fromArray([60, 180, 60])
-        ),
         k.area(),
         k.move(k.LEFT, speed),
         k.z(5),
+        'obstacle',
         { pattern },
       ])
 
@@ -80,9 +81,8 @@ export function createGameScene(k: KaboomCtx) {
     const addShieldPickup = () => {
       if (shieldActive) return
       k.add([
-        k.rect(24, 24),
+        k.sprite('shield'),
         k.pos(k.width(), ground.pos.y - 60),
-        k.color(k.Color.fromArray([0, 100, 255])),
         k.area(),
         k.move(k.LEFT, gameSpeed),
         k.z(5),
@@ -93,9 +93,8 @@ export function createGameScene(k: KaboomCtx) {
     const addSlowmoPickup = () => {
       if (slowmoActive) return
       k.add([
-        k.rect(24, 24),
+        k.sprite('slowmo'),
         k.pos(k.width(), ground.pos.y - 60),
-        k.color(k.Color.fromArray([150, 50, 200])),
         k.area(),
         k.move(k.LEFT, gameSpeed),
         k.z(5),
