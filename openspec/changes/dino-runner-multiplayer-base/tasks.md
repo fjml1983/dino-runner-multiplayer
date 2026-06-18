@@ -11,7 +11,7 @@
 
 - [x] 2.1 Write Prisma schema (User + Score models)
 - [x] 2.2 Run initial migration and seed script
-- [ ] 2.3 Implement POST /api/auth/google (verify Google token, upsert user, return JWT)
+- [x] 2.3 Implement POST /api/auth/google (verify Google token, upsert user, return JWT)
 - [ ] 2.4 Implement JWT middleware for protected routes
 - [ ] 2.5 Implement GET /api/auth/me
 
