@@ -4,7 +4,7 @@
     "buildCommand": "npm install && npm run build"
   },
   "deploy": {
-    "startCommand": "node packages/server/dist/index.js",
+    "startCommand": "mkdir -p data && NODE_ENV=production npx prisma db push --schema=packages/server/prisma/schema.prisma && NODE_ENV=production node packages/server/dist/index.js",
     "healthcheckPath": "/api/ranking/current",
     "restartPolicyType": "on_failure"
   }
