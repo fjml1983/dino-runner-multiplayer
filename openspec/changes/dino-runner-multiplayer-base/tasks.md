@@ -40,20 +40,20 @@
 ## 6. Frontend: Game engine with Kaplay
 
 - [x] 6.1 Initialize Kaplay on a dedicated canvas element
-- [ ] 6.2 Load sprites (dino, cactus, pterodactyl, ground, power-ups)
-- [ ] 6.3 Load sound effects (jump, collision, powerup)
-- [ ] 6.4 Implement menu scene (start prompt)
-- [ ] 6.5 Implement game scene with physics (gravity, jump, ground scrolling)
-- [ ] 6.6 Implement obstacle spawning with pattern pools per phase
-- [ ] 6.7 Implement collision detection (AABB)
-- [ ] 6.8 Implement game-over scene with score display and restart
-- [ ] 6.9 Implement progressive difficulty system (4 phases)
+- [x] 6.2 Load sprites (dino, cactus, pterodactyl, ground, power-ups)
+- [x] 6.3 Load sound effects (jump, collision, powerup)
+- [x] 6.4 Implement menu scene (start prompt)
+- [x] 6.5 Implement game scene with physics (gravity, jump, ground scrolling)
+- [x] 6.6 Implement obstacle spawning with pattern pools per phase
+- [x] 6.7 Implement collision detection (AABB)
+- [x] 6.8 Implement game-over scene with score display and restart
+- [x] 6.9 Implement progressive difficulty system (4 phases)
 
 ## 7. Frontend: Power-ups
 
-- [ ] 7.1 Implement shield pickup: spawn, visual aura, absorb collision, 5s timer
-- [ ] 7.2 Implement slow-mo pickup: spawn, speed reduction, purple tint, 3s timer
-- [ ] 7.3 Implement power-up spawner with weighted probability (shield 70%, slow-mo 30%)
+- [x] 7.1 Implement shield pickup: spawn, visual aura, absorb collision, 5s timer
+- [x] 7.2 Implement slow-mo pickup: spawn, speed reduction, purple tint, 3s timer
+- [x] 7.3 Implement power-up spawner with weighted probability (shield 70%, slow-mo 30%)
 
 ## 8. Frontend: React UI
 
