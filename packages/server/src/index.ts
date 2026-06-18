@@ -1,6 +1,7 @@
 import path from 'path'
 import express from 'express'
 import cors from 'cors'
+import { prisma } from './db.js'
 import { authRouter } from './auth/auth.router.js'
 import { scoresRouter } from './scores/scores.router.js'
 import { rankingRouter } from './ranking/ranking.router.js'
@@ -25,7 +26,9 @@ export { app }
 
 const PORT = process.env.PORT || 3001
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, () => {
-    console.log(`Dino Runner API running on port ${PORT}`)
+  prisma.$connect().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Dino Runner API running on port ${PORT}`)
+    })
   })
 }

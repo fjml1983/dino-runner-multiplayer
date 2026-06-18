@@ -1,12 +1,11 @@
 import { Router, Request, Response } from 'express'
 import { OAuth2Client } from 'google-auth-library'
 import jwt from 'jsonwebtoken'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '../db.js'
 import { jwtMiddleware } from './jwt.middleware.js'
 
 const router = Router()
 const googleClient = new OAuth2Client()
-const prisma = new PrismaClient()
 
 router.post('/google', async (req: Request, res: Response) => {
   try {

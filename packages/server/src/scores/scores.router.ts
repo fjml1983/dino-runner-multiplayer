@@ -1,9 +1,8 @@
 import { Router, Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '../db.js'
 import { jwtMiddleware } from '../auth/jwt.middleware.js'
 
 const router = Router()
-const prisma = new PrismaClient()
 
 router.post('/', jwtMiddleware, async (req: Request, res: Response) => {
   try {

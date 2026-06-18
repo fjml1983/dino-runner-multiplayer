@@ -28,7 +28,7 @@
 ## 4. Backend: Static serving
 
 - [x] 4.1 Configure Express to serve client/dist in production mode
-- [ ] 4.2 Add Prisma migration step to startup script
+- [x] 4.2 Add Prisma migration step to startup script
 
 ## 5. Frontend: Auth & HTTP client
 

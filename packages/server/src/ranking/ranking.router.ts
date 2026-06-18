@@ -1,9 +1,8 @@
 import { Router, Request, Response } from 'express'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '../db.js'
 import { getCurrentWeekId } from '../utils/week.js'
 
 const router = Router()
-const prisma = new PrismaClient()
 
 router.get('/current', async (_req: Request, res: Response) => {
   try {
