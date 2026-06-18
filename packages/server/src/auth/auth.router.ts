@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express'
 import { OAuth2Client } from 'google-auth-library'
 import jwt from 'jsonwebtoken'
 import { PrismaClient } from '@prisma/client'
+import { jwtMiddleware } from './jwt.middleware.js'
 
 const router = Router()
 const googleClient = new OAuth2Client()
@@ -50,6 +51,10 @@ router.post('/google', async (req: Request, res: Response) => {
     console.error('Auth error:', error)
     res.status(401).json({ error: 'Authentication failed' })
   }
+})
+
+router.get('/me', jwtMiddleware, (req: Request, res: Response) => {
+  res.json(req.user)
 })
 
 export { router as authRouter }

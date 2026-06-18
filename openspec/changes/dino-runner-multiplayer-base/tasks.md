@@ -13,7 +13,7 @@
 - [x] 2.2 Run initial migration and seed script
 - [x] 2.3 Implement POST /api/auth/google (verify Google token, upsert user, return JWT)
 - [x] 2.4 Implement JWT middleware for protected routes
-- [ ] 2.5 Implement GET /api/auth/me
+- [x] 2.5 Implement GET /api/auth/me
 
 ## 3. Backend: Scores & Ranking
 

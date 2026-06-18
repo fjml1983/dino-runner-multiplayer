@@ -73,3 +73,29 @@ describe('POST /api/auth/google', () => {
     expect(res.status).toBe(401)
   })
 })
+
+describe('GET /api/auth/me', () => {
+  it('should return 401 without token', async () => {
+    const res = await supertest(app).get('/api/auth/me')
+    expect(res.status).toBe(401)
+  })
+
+  it('should return user data with valid token', async () => {
+    const jwt = await import('jsonwebtoken')
+    const token = jwt.default.sign(
+      { id: 'test-id', email: 'test@test.com', displayName: 'Test User', avatar: null },
+      'dev-secret'
+    )
+
+    const res = await supertest(app)
+      .get('/api/auth/me')
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body).toMatchObject({
+      id: 'test-id',
+      email: 'test@test.com',
+      displayName: 'Test User',
+    })
+  })
+})
