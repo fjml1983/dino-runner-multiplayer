@@ -37,4 +37,17 @@ router.post('/', jwtMiddleware, async (req: Request, res: Response) => {
   }
 })
 
+router.get('/me', jwtMiddleware, async (req: Request, res: Response) => {
+  try {
+    const scores = await prisma.score.findMany({
+      where: { userId: req.user!.id },
+      orderBy: { weekId: 'desc' },
+    })
+    res.json(scores)
+  } catch (error) {
+    console.error('Scores error:', error)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
 export { router as scoresRouter }

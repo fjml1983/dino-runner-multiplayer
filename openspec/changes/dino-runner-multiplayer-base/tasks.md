@@ -18,7 +18,7 @@
 ## 3. Backend: Scores & Ranking
 
 - [x] 3.1 Implement POST /api/scores with upsert logic (one entry per userId+weekId)
-- [ ] 3.2 Implement GET /api/scores/me (user's score history)
+- [x] 3.2 Implement GET /api/scores/me (user's score history)
 - [ ] 3.3 Implement GET /api/ranking/current (top 25 current ISO week)
 - [ ] 3.4 Implement GET /api/ranking/week/:weekId (top 25 historical week)
 - [ ] 3.5 Implement GET /api/ranking/all (top 25 global all-time)

@@ -91,3 +91,31 @@ describe('POST /api/scores', () => {
     expect(mockScoreUpdate).not.toHaveBeenCalled()
   })
 })
+
+describe('GET /api/scores/me', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('should return 401 without auth', async () => {
+    const res = await supertest(app).get('/api/scores/me')
+    expect(res.status).toBe(401)
+  })
+
+  it('should return user scores sorted by weekId desc', async () => {
+    const scores = [
+      { id: 2, value: 200, weekId: '2026-W26', userId: 'user-1' },
+      { id: 1, value: 100, weekId: '2026-W25', userId: 'user-1' },
+    ]
+    mockScoreFindMany.mockResolvedValue(scores)
+
+    const res = await supertest(app)
+      .get('/api/scores/me')
+      .set('Authorization', `Bearer ${getAuthToken()}`)
+
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveLength(2)
+    expect(res.body[0].weekId).toBe('2026-W26')
+    expect(res.body[1].weekId).toBe('2026-W25')
+  })
+})
